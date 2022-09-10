@@ -6,8 +6,8 @@ export default function Featured() {
   const [index, setIndex] = useState(0);
   const images = [
     "/imgs/featured.png",
-    "/imgs/featured1.png",
     "/imgs/featured2.png",
+    "/imgs/featured3.png",
   ];
   const slide = (direction) => {
     if (direction === "r") {
@@ -39,7 +39,7 @@ export default function Featured() {
       >
         {images.map((img, i) => (
           <div key={i} className={styles.imgContainer}>
-            <Image src={img} alt="" layout="fill" objectFit="cover" />
+            <Image src={img} alt="" layout="fill" objectFit="contain" />
           </div>
         ))}
       </div>
