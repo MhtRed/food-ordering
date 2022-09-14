@@ -1,17 +1,37 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import axios from "axios";
 import styles from "../../styles/Product.module.css";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/cartSlice";
 
-export default function Product() {
+export default function Product({ pizza }) {
   const [size, setSize] = useState(0);
-  console.log(size);
-  const pizza = {
-    id: 1,
-    img: "/imgs/pizza.png",
-    name: "CAMPAGNOLA",
-    price: [19.9, 23.9, 27.9],
-    desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, eum quia unde minima, deserunt facere culpa quam ipsam repellendus dignissimos, placeat harum inventore fugiat? Facere rem explicabo neque beatae quas!",
+  const [extras, setExtras] = useState([]);
+  const [qty, setQty] = useState(1);
+  const [extraPrice, setExtraPrice] = useState(0);
+  const dispatch = useDispatch();
+
+  const changeHandler = (e, option) => {
+    if (e.target.checked) {
+      setExtraPrice((extraPrice) => extraPrice + option.price);
+      setExtras((prev) => [...prev, option]);
+    } else {
+      setExtraPrice((extraPrice) => extraPrice - option.price);
+      setExtras((prev) => prev.filter((opt) => opt._id !== option._id));
+    }
   };
+  const clickHandler = () => {
+    dispatch(
+      addProduct({
+        ...pizza,
+        qty,
+        extraOptions: extras,
+        price: pizza.prices[size] + extraPrice,
+      })
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -25,8 +45,11 @@ export default function Product() {
         </div>
       </div>
       <div className={styles.right}>
-        <h1 className={styles.title}>{pizza.name}</h1>
-        <span className={styles.price}> £ {pizza.price[size]}</span>
+        <h1 className={styles.title}>{pizza.title}</h1>
+        <span className={styles.price}>
+          {" "}
+          £ {pizza.prices[size] + extraPrice}
+        </span>
         <p className={styles.desc}>{pizza.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
@@ -60,48 +83,42 @@ export default function Product() {
         </div>
         <h3 className={styles.choose}>Choose additional ingredients</h3>
         <div className={styles.ingredients}>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              id="double"
-              name="double"
-              className={styles.checkbox}
-            />
-            <label htmlFor="double">Double Ingredients </label>
-          </div>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              id="cheese"
-              name="cheese"
-              className={styles.checkbox}
-            />
-            <label htmlFor="cheese">Extra Cheese </label>
-          </div>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              id="spicy"
-              name="spicy"
-              className={styles.checkbox}
-            />
-            <label htmlFor="spicy">Spicy Sauce </label>
-          </div>
-          <div className={styles.option}>
-            <input
-              type="checkbox"
-              id="garlic"
-              name="garlic"
-              className={styles.checkbox}
-            />
-            <label htmlFor="garlic">Garlic Sauce </label>
-          </div>
+          {pizza.extraOptions.map((option) => (
+            <div key={option._id} className={styles.option}>
+              <input
+                type="checkbox"
+                id={option.text}
+                name={option.text}
+                className={styles.checkbox}
+                onChange={(e) => changeHandler(e, option)}
+              />
+              <label htmlFor="double">{option.text}</label>
+            </div>
+          ))}
         </div>
         <div className={styles.add}>
-          <input type="number" defaultValue={1} className={styles.quantity} />
-          <button className={styles.button}>Add To Cart</button>
+          <input
+            type="number"
+            value={qty}
+            onChange={(e) => setQty(e.target.value)}
+            className={styles.quantity}
+          />
+          <button className={styles.button} onClick={clickHandler}>
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>
   );
 }
+
+export const getServerSideProps = async ({ params }) => {
+  const response = await axios.get(
+    `http://localhost:3000/api/products/${params.id}`
+  );
+  return {
+    props: {
+      pizza: response.data,
+    },
+  };
+};

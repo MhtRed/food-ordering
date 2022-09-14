@@ -1,7 +1,7 @@
 import styles from "../styles/PizzaList.module.css";
 import PizzaCard from "../components/PizzaCard";
 
-export default function PizzaList() {
+export default function PizzaList({ pizzas }) {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>The best pizza in town</h1>
@@ -12,13 +12,9 @@ export default function PizzaList() {
         voluptatum minus et.
       </p>
       <div className={styles.wrapper}>
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
+        {pizzas.map((pizza) => (
+          <PizzaCard key={pizza._id} pizza={pizza} />
+        ))}
       </div>
     </div>
   );
