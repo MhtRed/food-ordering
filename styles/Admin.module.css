@@ -1,3 +1,42 @@
 .container {
-  background-color: red;
+  padding: 50px;
+  display: flex;
+}
+.item {
+  flex: 1;
+}
+.title {
+}
+.table {
+  width: 100%;
+  border-spacing: 20px;
+  text-align: left;
+}
+.trTitle {
+}
+.tr {
+}
+.title {
+}
+.button {
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.button:first-child {
+  background-color: teal;
+  margin-right: 10px;
+}
+.next {
+  border: none;
+  background-color: teal;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.button:last-child {
+  background-color: crimson;
 }

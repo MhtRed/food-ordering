@@ -1,11 +1,13 @@
 .container {
   width: 22%;
-  padding: 20px 40px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.041);
+  margin: .5%;
 }
 .title {
   font-size: 18px;

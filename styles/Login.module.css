@@ -1,0 +1,44 @@
+.container {
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-weight: 400;
+  margin-bottom: 50px;
+}
+.input {
+  margin-bottom: 20px;
+  padding: 0px 10px;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid teal;
+  font-size: 16px;
+}
+.input:focus {
+  border-bottom: 2px solid teal;
+}
+.button {
+  cursor: pointer;
+  border: none;
+  background-color: teal;
+  color: white;
+  width: fit-content;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.error{
+  color: crimson;
+  margin: auto;
+  font-size: 13px;
+  font-weight: bold;
+}

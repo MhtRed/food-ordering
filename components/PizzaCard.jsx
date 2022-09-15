@@ -7,10 +7,11 @@ export default function PizzaCard({ pizza }) {
     <Link href={`product/${pizza._id}`}>
       <div className={styles.container}>
         <Image 
-          src="/imgs/pizza.png"
+          src={pizza.img}
           alt="pizza"
           width="500"
           height="500"
+          objectFit="cover"
         ></Image>
         <h1 className={styles.title}>{pizza.title}</h1>
         <span className={styles.price}>£ {pizza.prices[0]}</span>
