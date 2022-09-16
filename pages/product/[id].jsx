@@ -112,7 +112,7 @@ export default function Product({ pizza }) {
   );
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const response = await axios.get(
     `http://localhost:3000/api/products/${params.id}`
   );
@@ -122,3 +122,9 @@ export const getServerSideProps = async ({ params }) => {
     },
   };
 };
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: false,
+  };
+}

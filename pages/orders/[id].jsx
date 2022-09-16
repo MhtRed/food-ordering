@@ -89,7 +89,7 @@ export default function Orders({ order }) {
   );
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
   return {
     props: {
@@ -97,3 +97,9 @@ export const getServerSideProps = async ({ params }) => {
     },
   };
 };
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: false,
+  };
+}

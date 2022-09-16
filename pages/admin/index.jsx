@@ -110,7 +110,7 @@ export default function Admin({ products, orders }) {
     </div>
   );
 }
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const myCookie = context.req?.cookies || "";
   if (myCookie.token !== process.env.ADMIN_TOKEN) {
     return {

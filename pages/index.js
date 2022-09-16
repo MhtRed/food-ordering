@@ -18,20 +18,20 @@ export default function Home({ pizzas, admin }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured />
-      { admin && <AddButton setClose={setClose} />}
+      {admin && <AddButton setClose={setClose} />}
       <PizzaList pizzas={pizzas} />
       {!close && <Add setClose={setClose} />}
     </div>
   );
 }
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const myCookie = context.req?.cookies || "";
   let admin = false;
   if (myCookie.token === process.env.ADMIN_TOKEN) {
     admin = true;
   }
-  const response = await axios.get('http://localhost:3000/api/products');
+  const response = await axios.get("http://localhost:3000/api/products");
   return {
     props: {
       pizzas: response.data,
