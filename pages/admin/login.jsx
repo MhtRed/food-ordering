@@ -10,7 +10,7 @@ export default function Login() {
   const router = useRouter();
   const clickHandler = async () => {
     try {
-      await axios.post(`${process.env.PROD_URL}api/login`, {
+      await axios.post("http://localhost:3000/api/login", {
         username,
         password,
       });

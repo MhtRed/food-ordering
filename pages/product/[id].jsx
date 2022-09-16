@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import styles from "../../styles/Product.module.css";
 import { useDispatch } from "react-redux";
@@ -114,7 +114,7 @@ export default function Product({ pizza }) {
 
 export const getServerSideProps = async ({ params }) => {
   const response = await axios.get(
-    `${process.env.PROD_URL}api/products/${params.id}`
+    `http://localhost:3000/api/products/${params.id}`
   );
   return {
     props: {
