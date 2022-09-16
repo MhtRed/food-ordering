@@ -31,7 +31,7 @@ export const getServerSideProps = async (context) => {
   if (myCookie.token === process.env.ADMIN_TOKEN) {
     admin = true;
   }
-  const response = await axios.get("http://localhost:3000/api/products");
+  const response = await axios.get(`${process.env.PROD_URL}api/products`);
   return {
     props: {
       pizzas: response.data,

@@ -10,7 +10,7 @@ export default function Admin({ products, orders }) {
   const deleteHandler = async (id) => {
     try {
       const res = await axios.delete(
-        "http://localhost:3000/api/products/" + id
+        `${process.env.PROD_URL}api/products/${id}`
       );
       setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
     } catch (err) {
@@ -21,7 +21,7 @@ export default function Admin({ products, orders }) {
     const order = orderList.filter((item) => item._id === id)[0];
     const currentStatus = order.status;
     try {
-      const res = await axios.put("http://localhost:3000/api/orders/" + id, {
+      const res = await axios.put(`${process.env.PROD_URL}api/orders/${id}`, {
         status: currentStatus + 1,
       });
       setOrderList([
@@ -110,8 +110,7 @@ export default function Admin({ products, orders }) {
     </div>
   );
 }
-
-export const getServerSideProps = async ( context ) => {
+export const getServerSideProps = async (context) => {
   const myCookie = context.req?.cookies || "";
   if (myCookie.token !== process.env.ADMIN_TOKEN) {
     return {
@@ -122,9 +121,9 @@ export const getServerSideProps = async ( context ) => {
     };
   }
   const productsResponse = await axios.get(
-    "http://localhost:3000/api/products"
+    `${process.env.PROD_URL}api/products`
   );
-  const ordersResponse = await axios.get("http://localhost:3000/api/orders");
+  const ordersResponse = await axios.get(`${process.env.PROD_URL}api/orders`);
   return {
     props: {
       products: productsResponse.data,

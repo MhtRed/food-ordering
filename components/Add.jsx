@@ -38,9 +38,8 @@ export default function Add({ setClose }) {
         extraOptions,
         img: url,
       };
-
-      await axios.post('http://localhost:3000/api/products', newProduct)
-      setClose(true)
+      await axios.post(`${process.env.PROD_URL}api/products`, newProduct);
+      setClose(true);
     } catch (error) {
       console.log(error);
     }
