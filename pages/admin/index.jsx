@@ -2,6 +2,9 @@ import styles from "../../styles/Admin.module.css";
 import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
+import dbConnect from "../../utils/mongo";
+import Product from "../../models/Product";
+import Order from "../../models/Order";
 
 export default function Admin({ products, orders }) {
   const [pizzaList, setPizzaList] = useState(products);
@@ -120,14 +123,15 @@ export const getServerSideProps = async (context) => {
       },
     };
   }
-  const productsResponse = await axios.get(
-    "http://localhost:3000/api/products"
-  );
-  const ordersResponse = await axios.get("http://localhost:3000/api/orders");
+  await dbConnect();
+  const productsResponse = await Product.find();
+  const ordersResponse = await Order.find();
+  const products = JSON.parse(JSON.stringify(productsResponse));
+  const orders = JSON.parse(JSON.stringify(ordersResponse));
   return {
     props: {
-      products: productsResponse.data,
-      orders: ordersResponse.data,
+      products,
+      orders,
     },
   };
 };

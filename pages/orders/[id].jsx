@@ -1,6 +1,8 @@
-import axios from "axios";
 import Image from "next/image";
 import styles from "../../styles/Orders.module.css";
+import Order from "../../models/Order";
+import dbConnect from "../../utils/mongo";
+
 export default function Orders({ order }) {
   const statusClass = (index) => {
     if (index - order.status < 1) return styles.done;
@@ -90,10 +92,13 @@ export default function Orders({ order }) {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  await dbConnect();
+  const res = await Order.findById(params.id);
+  console.log(res);
+  const order = JSON.parse(JSON.stringify(res));
   return {
     props: {
-      order: res.data,
+      order,
     },
   };
 };

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
-import axios from "axios";
 import styles from "../../styles/Product.module.css";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
+import Product from "../../models/Product";
+import dbConnect from "../../utils/mongo";
 
-export default function Product({ pizza }) {
+export default function Pizza({ pizza }) {
   const [size, setSize] = useState(0);
   const [extras, setExtras] = useState([]);
   const [qty, setQty] = useState(1);
@@ -113,13 +114,13 @@ export default function Product({ pizza }) {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const response = await axios.get(
-    `http://localhost:3000/api/products/${params.id}`
-  );
+  await dbConnect();
+  const res = await Product.findById(params.id);
+  console.log(res);
+  const pizza = JSON.parse(JSON.stringify(res));
   return {
     props: {
-      pizza: response.data,
+      pizza,
     },
   };
 };
-
