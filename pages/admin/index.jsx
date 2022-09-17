@@ -13,7 +13,7 @@ export default function Admin({ products, orders }) {
   const deleteHandler = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/products/${id}`
+        `/api/products/${id}`
       );
       setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
     } catch (err) {
@@ -24,7 +24,7 @@ export default function Admin({ products, orders }) {
     const order = orderList.filter((item) => item._id === id)[0];
     const currentStatus = order.status;
     try {
-      const res = await axios.put(`http://localhost:3000/api/orders/${id}`, {
+      const res = await axios.put(`/api/orders/${id}`, {
         status: currentStatus + 1,
       });
       setOrderList([
