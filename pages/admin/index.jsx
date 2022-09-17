@@ -110,9 +110,9 @@ export default function Admin({ products, orders }) {
     </div>
   );
 }
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const myCookie = context.req?.cookies || "";
-  if (myCookie.token !== process.env.ADMIN_TOKEN) {
+  if (myCookie.token !== process.env.NEXT_PUBLIC_ADMIN_TOKEN) {
     return {
       redirect: {
         destination: "/admin/login",

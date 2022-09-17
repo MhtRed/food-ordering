@@ -25,10 +25,10 @@ export default function Home({ pizzas, admin }) {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const myCookie = context.req?.cookies || "";
   let admin = false;
-  if (myCookie.token === process.env.ADMIN_TOKEN) {
+  if (myCookie.token === process.env.NEXT_PUBLIC_ADMIN_TOKEN) {
     admin = true;
   }
   const response = await axios.get("http://localhost:3000/api/products");

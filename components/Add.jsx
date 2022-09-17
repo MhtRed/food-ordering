@@ -1,7 +1,6 @@
 import Styles from "../styles/Add.module.css";
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
 
 export default function Add({ setClose }) {
   const [file, setFile] = useState("");
@@ -38,14 +37,12 @@ export default function Add({ setClose }) {
         extraOptions,
         img: url,
       };
-      await axios.post(`${process.env.PROD_URL}api/products`, newProduct);
+      await axios.post('http://localhost:3000/api/products', newProduct);
       setClose(true);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log({ extra });
-  console.log({ extraOptions });
   return (
     <div className={Styles.container}>
       <div className={Styles.wrapper}>

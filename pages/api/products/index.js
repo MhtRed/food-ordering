@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     }
   }
   if (method === "POST") {
-    if (!token || token !== process.env.ADMIN_TOKEN) {
+    if (!token || token !== process.env.NEXT_PUBLIC_ADMIN_TOKEN) {
       return res.status(401).json("Not authenticated");
     }
     try {
