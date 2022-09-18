@@ -17,4 +17,4 @@ This is a Pizza ordering app developped using Next.js
      - md screens: min-width: 769px & max-width: 1024px
      - lg screens: min-width: 1024px
 ## Demo
-https://food-ordering-mhtred.vercel.app/
+Check it out: https://food-ordering-mhtred.vercel.app/

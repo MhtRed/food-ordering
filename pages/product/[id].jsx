@@ -49,7 +49,7 @@ export default function Pizza({ pizza }) {
         <h1 className={styles.title}>{pizza.title}</h1>
         <span className={styles.price}>
           {" "}
-          £ {pizza.prices[size] + extraPrice}
+          $ {pizza.prices[size] + extraPrice}
         </span>
         <p className={styles.desc}>{pizza.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>

@@ -17,7 +17,7 @@ export default function Cart() {
   const [cash, setCash] = useState(false);
   const { products, qty, total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const discount = 20;
+  const discount = 0;
   const router = useRouter();
   const amount = total;
   const currency = "USD";
@@ -125,14 +125,14 @@ export default function Cart() {
                   ))}
                 </td>
                 <td>
-                  <span className={styles.price}>£ {product.price}</span>
+                  <span className={styles.price}>$ {product.price}</span>
                 </td>
                 <td>
                   <span className={styles.quantity}>{product.qty}</span>
                 </td>
                 <td>
                   <span className={styles.total}>
-                    £ {product.price * product.qty}
+                    $ {product.price * product.qty}
                   </span>
                 </td>
               </tr>
@@ -144,13 +144,13 @@ export default function Cart() {
         <div className={styles.box}>
           <h2 className={styles.title}>CART TOTAL</h2>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Subtotal:</b> £ {total}
+            <b className={styles.totalTextTitle}>Subtotal:</b> $ {total}
           </div>
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Discount:</b> {discount} %
           </div>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Total:</b> £{" "}
+            <b className={styles.totalTextTitle}>Total:</b> ${" "}
             {total * ((100 - discount) / 100)}
           </div>
           {open ? (
