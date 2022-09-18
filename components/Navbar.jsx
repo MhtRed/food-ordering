@@ -8,6 +8,11 @@ export default function Navbar() {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
+        <Link href="/">
+          <div className={styles.logoSm}>
+            <Image src="/imgs/logo.png" alt="" layout="fill"></Image>
+          </div>
+        </Link>
         <div className={styles.callButton}>
           <Image
             src="/imgs/telephone.png"

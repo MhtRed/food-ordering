@@ -62,7 +62,7 @@ export default function Admin({ products, orders }) {
                 <td>{pizza._id.slice(0, 5)}...</td>
                 <td>{pizza.title}</td>
                 <td>£ {pizza.prices[0]}</td>
-                <td>
+                <td className={styles.buttons}>
                   <button className={styles.button}>Edit</button>
                   <button
                     className={styles.button}

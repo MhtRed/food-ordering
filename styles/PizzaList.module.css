@@ -9,7 +9,8 @@
 .desc {
   font-size: 24px;
   color: #444;
-  width: 70%;
+  width: 90%;
+  text-align: center;
 }
 .wrapper {
   width: 100%;

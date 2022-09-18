@@ -24,7 +24,7 @@ export default function Orders({ order }) {
               </tr>
               <tr className={styles.tr}>
                 <td>
-                  <span className={styles.id}>{order._id}</span>
+                  <span className={styles.id}>{order._id.slice(0, 5)}...</span>
                 </td>
                 <td>
                   <span className={styles.customer}>{order.customer}</span>

@@ -6,7 +6,8 @@ export default function PizzaCard({ pizza }) {
   return (
     <Link href={`product/${pizza._id}`}>
       <div className={styles.container}>
-        <Image 
+        <Image
+          className={styles.image}
           src={pizza.img}
           alt="pizza"
           width="500"

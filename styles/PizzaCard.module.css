@@ -6,8 +6,17 @@
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
-  background-color: rgba(128, 128, 128, 0.041);
-  margin: .5%;
+  background-color: white;
+  margin: 0.5%;
+  border-radius: 10px;
+  box-shadow: 10px -5px 20px 0px #f1f1f1;
+  transition: 0.2s ease-in;
+}
+.container:hover{
+  transform: scale(1.05);
+}
+.image{
+  border-radius: 10px;
 }
 .title {
   font-size: 18px;

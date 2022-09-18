@@ -88,3 +88,18 @@
   align-self: flex-end;
   margin-bottom: 10px;
 }
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 400px;
+    padding: 10px 20px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .wrapper {
+    width: calc(100vw);
+  }
+  .close {
+    top: 10px;
+    right: 10px;
+  }
+}

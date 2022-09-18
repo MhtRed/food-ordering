@@ -15,8 +15,16 @@
 .trTitle {
 }
 .tr {
+  
 }
 .title {
+}
+.buttons {
+  display: flex;
+  flex-direction: column ;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3px; 
 }
 .button {
   border: none;
@@ -27,7 +35,6 @@
 }
 .button:first-child {
   background-color: teal;
-  margin-right: 10px;
 }
 .next {
   border: none;
@@ -39,4 +46,25 @@
 }
 .button:last-child {
   background-color: crimson;
+}
+@media screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px;
+    font-size: small;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 10px;
+    font-size: smaller;
+  }
+  .table {
+    border-spacing: 5px;
+  }
 }
